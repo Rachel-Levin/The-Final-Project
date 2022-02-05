@@ -10,6 +10,10 @@ const NotFoundError = require('../errors/NotFoundError');
 
 const ValidationError = require('../errors/ValidationError');
 
+const UserExistsError = require('../errors/UserExistsError');
+
+const UnauthorizedError = require('../errors/UnauthorizedError');
+
 const findCurrentUser = (req, res) => {
   User.findById(req.user._id)
     .orFail(new NotFoundError('User not found'))
@@ -41,7 +45,7 @@ const createUser = (req, res) => {
       password: hash,
       name: req.body.name,
     }))
-    .then(() => res.status(201).send({ message: 'user created successfully' }))
+    .then(() => res.status(201).send({ message: 'user created successfully333' }))
     .catch((err) => {
       // res.status(403).send(err);
       if (err.code === 11000) {
@@ -84,5 +88,5 @@ const login = (req, res) => {
 module.exports = {
   findCurrentUser,
   createUser,
-  login
+  login,
 };
