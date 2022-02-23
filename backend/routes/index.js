@@ -10,6 +10,8 @@ const articlesRouter = require('./articles');
 
 const { createUser, login } = require('../controllers/users');
 
+const { pageNotFound } = require('../utils/constants');
+
 const auth = require('../middlewares/auth');
 
 router.post(
@@ -40,7 +42,7 @@ router.use('/', auth, articlesRouter);
 router.use('/', auth, usersRouter);
 
 router.get('*', () => {
-  throw new NotFoundError('OOPS! page not found');
+  throw new NotFoundError(pageNotFound);
 });
 
 module.exports = router;

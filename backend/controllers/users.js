@@ -14,16 +14,22 @@ const UserExistsError = require('../errors/UserExistsError');
 
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
+const {
+  incorrectPassOrEmail,
+  userExists,
+  userNotFound,
+} = require('../utils/constants');
+
 const findCurrentUser = (req, res) => {
   User.findById(req.user._id)
-    .orFail(new NotFoundError('User not found'))
+    .orFail(new NotFoundError(userNotFound))
     .then((user) => res.send(user.toJSON()))
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new ValidationError('Users id is incorrect'), req, res);
+        next(new ValidationError('idIsIncorrect'), req, res);
       }
       if (err.name === 'NotFoundError') {
-        next(new NotFoundError('User not found'), req, res);
+        next(new NotFoundError(userNotFound), req, res);
       } else {
         next(err, req, res);
       }
@@ -35,7 +41,7 @@ const createUser = (req, res) => {
   // User.findOne({user_email})
   //   .then((user) => {
   //     if(user) {
-  //       next(new UserExistsError('User is already exists'), req, res);
+  //       next(new UserExistsError(userExists), req, res);
   //     }
   //   }
   //   );
@@ -45,14 +51,13 @@ const createUser = (req, res) => {
       password: hash,
       name: req.body.name,
     }))
-    .then(() => res.status(201).send({ message: 'user created successfully333' }))
+    .then(() => res.status(201).send({ message: 'user created successfully' }))
     .catch((err) => {
       // res.status(403).send(err);
       if (err.code === 11000) {
-        next(new UserExistsError('User is already exists'), req, res);
-      }
-      if (err.name === 'NotFoundError') {
-        next(new NotFoundError('User not found'), req, res);
+        next(new UserExistsError(userExists), req, res);
+      } else if (err.name === 'NotFoundError') {
+        next(new NotFoundError(userNotFound), req, res);
       } else {
         next(err, req, res);
       }
@@ -64,12 +69,12 @@ const login = (req, res) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        next(new UnauthorizedError('Incorrect password or email'), req, res);
+        next(new UnauthorizedError(incorrectPassOrEmail), req, res);
       }
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            next(new UnauthorizedError('Incorrect password or email'), req, res);
+            return next(new UnauthorizedError(incorrectPassOrEmail), req, res);
           }
           const { NODE_ENV, JWT_SECRET } = process.env;
           const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
@@ -77,7 +82,7 @@ const login = (req, res) => {
         })
         .catch((err) => {
           if (err.name === 'Error') {
-            next(new UnauthorizedError('Incorrect password or email'), req, res);
+            next(new UnauthorizedError(incorrectPassOrEmail), req, res);
           } else {
             next(err, req, res);
           }

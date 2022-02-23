@@ -6,7 +6,7 @@ const handleErrors = (err, req, res, next) => {
     res.status(statusCode)
       .send({
         message: statusCode === ERROR_CODE_SERVER
-          ? 'Server error ' + err.message
+          ? 'Server error' + err.message
           : message,
       });
     // next();

@@ -8,15 +8,21 @@ const ValidationError = require('../errors/NotFoundError');
 
 const NoRightsError = require('../errors/NoRightsError');
 
+const {
+  articleNotFound,
+  cantDelete,
+  idIsIncorrect,
+} = require('../utils/constants');
+
 const getArticles = (req, res) => {
   Article.find({})
-    .orFail(new NotFoundError('Articles not found'))
+    .orFail(new NotFoundError(articleNotFound))
     .then((articles) => {
       res.send(articles.map((article) => article));
     })
     .catch((err) => {
       if (err.name === 'NotFoundError') {
-        next(new NotFoundError('Article not found'), req, res);
+        next(new NotFoundError(articleNotFound), req, res);
       } else {
         next(err, req, res);
       }
@@ -60,10 +66,10 @@ const createArticle = (req, res) => {
 
 const deleteArticle = (req, res) => {
   Article.findById(req.params.id)
-    .orFail(new NotFoundError('Article not found'))
+    .orFail(new NotFoundError(articleNotFound))
     .then((article) => {
       if (article.owner !== req.user._id) {
-        next(new NoRightsError('You can`t remove this article'), req, res);
+        next(new NoRightsError(cantDelete), req, res);
       } else {
         return article.remove()
           .then(() => res.send({ message: `Article  '${article.title}' was removed` }));
@@ -71,10 +77,10 @@ const deleteArticle = (req, res) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new ValidationError('Users id is incorrect'), req, res);
+        next(new ValidationError(idIsIncorrect), req, res);
       }
       if (err.name === 'NotFoundError') {
-        next(new NotFoundError('Article not found'), req, res);
+        next(new NotFoundError(articleNotFound), req, res);
       } else {
         next(err, req, res);
       }
