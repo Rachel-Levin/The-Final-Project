@@ -1,0 +1,42 @@
+.logo {
+    font-family: "Roboto Slab";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: white;
+    margin-left: 104px;
+    text-decoration: none;
+  }
+  
+  .logo__dark {
+    color: #1a1b22;
+  }
+  
+  .logo:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 950px) {
+    .logo {
+      margin-left: 40px;
+    }
+    }
+    
+  
+  @media screen and (max-width: 650px) {
+    .logo {
+      font-size: 16px;
+      margin-left: 16px;
+    }
+    }
+
+.logo__mobile {
+  margin-bottom: 0px;
+  margin-top: 16px;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  margin-left: 0px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  color: white;
+}

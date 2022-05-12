@@ -1,0 +1,125 @@
+.modal {
+    width: 430px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 25px;
+    display: none;
+    position: fixed;
+    top: 207px;
+}
+
+.modal__open {
+    display: flex;
+
+}
+
+.modal__container {
+    margin: 34px 36px 28px 36px;
+}
+
+.modal__close-button {
+    background-image: url(../../images/Close.svg);
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .modal__close-button:hover {
+  opacity: .6;
+  }
+  
+  @media screen and (max-width: 540px) {
+  .modal__close-button {
+      width: 26px;
+      height: 26px;
+      top: -40px;
+      right: 0px;
+      background-size: 26px 26px;
+  }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+    color: #1A1B22;
+    margin-top: 0px;
+  }
+
+  .form__or {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin-right: 6px;    
+  }
+
+  .form__button {
+    background: #2F71E5;
+    box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+    border-radius: 100px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    width: 360px;
+    height: 64px;
+    border: 0px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  .form__button:hover:enabled {
+    opacity: .8;
+    }
+
+  .form__button_alt {
+      cursor: pointer;
+      color: #2F71E5;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 17px;  
+  }
+
+  .or__alt {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 650px) {
+    .modal {
+        width: 320px;
+    }
+
+    .modal__container {
+      margin: 16px;
+    }
+ 
+  .form__button {
+    width: 288px;
+    }
+    }

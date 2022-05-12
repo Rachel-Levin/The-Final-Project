@@ -31,7 +31,7 @@ const articleSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid link!`,
     },
   },
-  image: {
+  urlToImage: {
     type: String,
     required: true,
     validate: {

@@ -1,2 +1,2 @@
 # The-Final-Project
-https://api.news.students.nomoreparties.sbs/
+https://api.news.rachel.students.nomoreparties.sbs/

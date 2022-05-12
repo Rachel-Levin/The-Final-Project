@@ -15,7 +15,8 @@ const {
 } = require('../utils/constants');
 
 const getArticles = (req, res) => {
-  Article.find({})
+  console.log(req);
+  Article.find({"owner": req.user._id})
     .orFail(new NotFoundError(articleNotFound))
     .then((articles) => {
       res.send(articles.map((article) => article));
@@ -38,7 +39,7 @@ const createArticle = (req, res) => {
     date,
     source,
     link,
-    image,
+    urlToImage,
   } = req.body;
 
   Article.create({
@@ -48,7 +49,7 @@ const createArticle = (req, res) => {
     date,
     source,
     link,
-    image,
+    urlToImage,
     owner: req.user._id,
   })
     .then((article) => res.status(201).send(article.toJSON()))

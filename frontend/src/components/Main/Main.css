@@ -1,0 +1,38 @@
+.main {
+    /* margin-left: 104px;
+    margin-right: 104px; */
+    font-family: Roboto Slab;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 46px;
+    color: #1A1B22;
+    width: -webkit-fill-available;
+}
+
+.main__title {
+    font-family: Roboto Slab;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 46px;
+    color: #1A1B22;
+    text-align: left;
+}
+
+@media screen and (max-width: 950px) {
+    .main__title {
+        font-size: 30px;
+        line-height: 34px;
+        margin-top: 0;
+        margin-bottom: 32;
+    }
+    }
+
+@media screen and (max-width: 770px) {
+    .main__title {
+        margin-bottom: 58;
+        display: flex;
+        justify-content: center;
+    }
+    }

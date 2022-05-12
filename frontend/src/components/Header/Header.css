@@ -1,0 +1,24 @@
+.header {
+    width: 100%;    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-top: 19px;
+    padding-bottom: 13px; */
+    box-sizing: border-box;
+    background-color: transparent;
+    border-bottom: solid #c4c4c4 1px;
+    z-index: 1;
+    height: 80px;
+    position: relative;
+  }
+
+.header__mobile {
+  background-color: black;
+  border: none;
+  height: auto;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+}

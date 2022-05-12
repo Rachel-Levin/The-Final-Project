@@ -22,7 +22,7 @@ articlesRouter.post(
       // date: Joi.string().required(),
       source: Joi.string().required(),
       link: checkedLink,
-      image: checkedLink,
+      urlToImage: checkedLink,
     }).unknown(true),
   }),
   createArticle,

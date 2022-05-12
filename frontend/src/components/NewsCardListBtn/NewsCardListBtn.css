@@ -1,0 +1,60 @@
+/* .newsCardListBtn {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: black;
+    background-color: white;
+    border-radius: 80px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 288px;
+    height: 64px;
+    margin-left: 50%;
+} */
+
+.newsCardListBtn {
+    width: 288px;
+    height: 64px;
+    border-radius: 80px;
+    border-color: transparent;
+    color: #1a1b22;
+    background-color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 32x;
+    /* margin-left: 50%-144px; */
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  
+  .newsCardListBtn:hover {
+    background-color: #e8e8e8;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 950px) {
+
+    .newsCardListBtn {
+      margin-top: 32px;
+      margin-bottom: 0px;
+      width: 240px;
+    }
+
+    }  
+
+  @media screen and (max-width: 770px) {
+
+    .newsCardListBtn {
+      margin-top: 21px;
+      width: 288px;
+    }
+
+    }
