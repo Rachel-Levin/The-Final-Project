@@ -15,7 +15,6 @@ const {
 } = require('../utils/constants');
 
 const getArticles = (req, res) => {
-  console.log(req);
   Article.find({"owner": req.user._id})
     .orFail(new NotFoundError(articleNotFound))
     .then((articles) => {
